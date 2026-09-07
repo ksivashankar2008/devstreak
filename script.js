@@ -3,7 +3,7 @@
   Course + Learning Tracker
   Data is stored locally in the browser.
 */
-
+const close = document.querySelector("#close-history");
 
 const courses = [
 
@@ -1133,7 +1133,11 @@ function renderHistory() {
                 document
                     .getElementById("history-dialog")
                     .showModal();
-
+               close.onclick=()=>{
+                 document
+                    .getElementById("history-dialog").close();
+               }
+              
             });
 
         });
