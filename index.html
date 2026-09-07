@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>DevStreak — Master Your Craft</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <aside class="sidebar">
+
+    <div class="logo">
+      <div class="logo-icon">D</div>
+
+      <div>
+        <strong>DevStreak</strong>
+        <span>MASTER YOUR CRAFT</span>
+      </div>
+    </div>
+
+    <nav>
+
+      <button class="nav-item active" data-page="dashboard">
+        <span>⌂</span>
+        Dashboard
+      </button>
+
+      <button class="nav-item" data-page="path">
+        <span>◎</span>
+        Learning Path
+      </button>
+
+      <button class="nav-item" data-page="courses">
+        <span>▣</span>
+        Courses & Materials
+      </button>
+
+      <button class="nav-item" data-page="log">
+        <span>＋</span>
+        Daily Log
+      </button>
+
+      <button class="nav-item" data-page="analytics">
+        <span>◒</span>
+        Analytics
+      </button>
+
+    </nav>
+
+    <div class="sidebar-bottom">
+      <strong>Learn · Build · Repeat</strong>
+      <p>
+        Your one-year journey toward Web Development + Automation.
+      </p>
+    </div>
+
+  </aside>
+
+
+  <main>
+
+    <header>
+
+      <div>
+        <p class="eyebrow">WEB DEVELOPMENT + AUTOMATION</p>
+        <h1 id="page-title">Dashboard</h1>
+      </div>
+
+      <div class="header-actions">
+
+        <button id="theme-btn" class="icon-button">
+          ☾
+        </button>
+
+        <button class="primary-button" onclick="openPage('log')">
+          + Log Today
+        </button>
+
+      </div>
+
+    </header>
+
+
+    <!-- DASHBOARD -->
+
+    <section id="dashboard" class="page active">
+
+      <div class="hero">
+
+        <div class="hero-content">
+
+          <span class="badge">
+            12 PHASES · ~1 YEAR
+          </span>
+
+          <h2>
+            Build skills that
+            <span>turn into products.</span>
+          </h2>
+
+          <p>
+            Follow the roadmap, study the recommended material,
+            build real projects and track your consistency.
+          </p>
+
+          <button
+            class="primary-button"
+            onclick="openPage('courses')"
+          >
+            Explore Courses →
+          </button>
+
+        </div>
+
+
+        <div class="streak-circle">
+
+          <div>🔥</div>
+
+          <strong id="hero-streak">
+            0
+          </strong>
+
+          <small>
+            day streak
+          </small>
+
+        </div>
+
+      </div>
+
+
+      <div class="stats">
+
+        <div class="stat-card">
+
+          <span>🔥 Current streak</span>
+
+          <strong id="current-streak">
+            0
+          </strong>
+
+          <small>days</small>
+
+        </div>
+
+
+        <div class="stat-card">
+
+          <span>⏱ Total learning</span>
+
+          <strong id="total-hours">
+            0
+          </strong>
+
+          <small>hours</small>
+
+        </div>
+
+
+        <div class="stat-card">
+
+          <span>📅 Active days</span>
+
+          <strong id="active-days">
+            0
+          </strong>
+
+          <small>days</small>
+
+        </div>
+
+
+        <div class="stat-card">
+
+          <span>🎯 Path progress</span>
+
+          <strong id="path-progress">
+            0%
+          </strong>
+
+          <small>overall</small>
+
+        </div>
+
+      </div>
+
+
+      <div class="dashboard-grid">
+
+        <div class="card">
+
+          <div class="card-header">
+
+            <h3>
+              This week's progress
+            </h3>
+
+            <button
+              class="text-button"
+              onclick="openPage('analytics')"
+            >
+              View analytics
+            </button>
+
+          </div>
+
+          <div id="week-chart" class="week-chart"></div>
+
+        </div>
+
+
+        <div class="card">
+
+          <div class="card-header">
+
+            <h3>
+              Continue learning
+            </h3>
+
+          </div>
+
+          <div id="continue-learning"></div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- LEARNING PATH -->
+
+    <section id="path" class="page">
+
+      <div class="section-intro">
+
+        <p class="eyebrow">
+          YOUR ROADMAP
+        </p>
+
+        <h2>
+          Web Development + Automation
+        </h2>
+
+        <p>
+          Move through the path at your own pace.
+          Every phase has a recommended course, documentation
+          and a project to build.
+        </p>
+
+      </div>
+
+
+      <div id="path-grid" class="path-grid"></div>
+
+    </section>
+
+
+
+    <!-- COURSES -->
+
+    <section id="courses" class="page">
+
+      <div class="section-intro">
+
+        <p class="eyebrow">
+          RECOMMENDED MATERIAL
+        </p>
+
+        <h2>
+          Course Hub
+        </h2>
+
+        <p>
+          Don't collect hundreds of courses.
+          Follow one strong resource, use documentation,
+          and build.
+        </p>
+
+      </div>
+
+
+      <div class="course-toolbar">
+
+        <button
+          class="filter active"
+          data-filter="all"
+        >
+          All
+        </button>
+
+        <button
+          class="filter"
+          data-filter="current"
+        >
+          Current
+        </button>
+
+        <button
+          class="filter"
+          data-filter="not-started"
+        >
+          Not Started
+        </button>
+
+        <input
+          id="course-search"
+          type="search"
+          placeholder="Search courses or topics..."
+        >
+
+      </div>
+
+
+      <div id="course-grid" class="course-grid"></div>
+
+    </section>
+
+
+
+    <!-- DAILY LOG -->
+
+    <section id="log" class="page">
+
+      <div class="section-intro">
+
+        <p class="eyebrow">
+          DAILY PRACTICE
+        </p>
+
+        <h2>
+          Log Today's Work
+        </h2>
+
+        <p>
+          Small daily records become useful weekly analytics.
+        </p>
+
+      </div>
+
+
+      <form id="log-form" class="card log-form">
+
+        <div class="form-row">
+
+          <label>
+            Date
+
+            <input
+              id="log-date"
+              type="date"
+              required
+            >
+
+          </label>
+
+
+          <label>
+            Hours
+
+            <input
+              id="log-hours"
+              type="number"
+              min="0"
+              max="24"
+              step="0.25"
+              placeholder="2"
+              required
+            >
+
+          </label>
+
+
+          <label>
+            Phase
+
+            <select id="log-phase"></select>
+
+          </label>
+
+        </div>
+
+
+        <label>
+          What did you learn?
+
+          <textarea
+            id="learned"
+            placeholder="Topics, concepts, syntax, documentation..."
+          ></textarea>
+
+        </label>
+
+
+        <label>
+          What did you build?
+
+          <textarea
+            id="built"
+            placeholder="Project, feature, exercise..."
+          ></textarea>
+
+        </label>
+
+
+        <label>
+          Problems / What did you solve?
+
+          <textarea
+            id="struggles"
+            placeholder="What blocked you and how did you solve it?"
+          ></textarea>
+
+        </label>
+
+
+        <label class="checkbox">
+
+          <input
+            id="completed"
+            type="checkbox"
+          >
+
+          I completed today's target.
+
+        </label>
+
+
+        <button
+          class="primary-button"
+          type="submit"
+        >
+          Save Today's Log
+        </button>
+
+      </form>
+
+
+      <div class="card">
+
+        <div class="card-header">
+
+          <h3>
+            Learning History
+          </h3>
+
+        </div>
+
+        <div id="history"></div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ANALYTICS -->
+
+    <section id="analytics" class="page">
+
+      <div class="section-intro">
+
+        <p class="eyebrow">
+          WEEKLY REVIEW
+        </p>
+
+        <h2>
+          Your Analytics
+        </h2>
+
+        <p>
+          Track whether you're actually moving forward.
+        </p>
+
+      </div>
+
+
+      <div class="stats">
+
+        <div class="stat-card">
+
+          <span>
+            Hours this week
+          </span>
+
+          <strong id="weekly-hours">
+            0
+          </strong>
+
+        </div>
+
+
+        <div class="stat-card">
+
+          <span>
+            Active days
+          </span>
+
+          <strong id="weekly-days">
+            0
+          </strong>
+
+        </div>
+
+
+        <div class="stat-card">
+
+          <span>
+            Consistency
+          </span>
+
+          <strong id="consistency">
+            0%
+          </strong>
+
+        </div>
+
+
+        <div class="stat-card">
+
+          <span>
+            Total logs
+          </span>
+
+          <strong id="total-logs">
+            0
+          </strong>
+
+        </div>
+
+      </div>
+
+
+      <div class="card">
+
+        <h3>
+          Weekly Report
+        </h3>
+
+        <div
+          id="weekly-report"
+          class="report"
+        ></div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
