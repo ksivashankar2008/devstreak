@@ -1049,72 +1049,95 @@ document
 
 function renderHistory() {
 
-  const history =
-    document.getElementById(
-      "history"
-    );
+    const history = document.getElementById("history");
 
+    const logs = [...state.logs]
+        .reverse()
+        .slice(0, 15);
 
-  const logs =
-    [...state.logs]
-      .reverse()
-      .slice(0, 15);
+    if (!logs.length) {
 
+        history.innerHTML =
+            `<div class="empty">
+                No logs yet.
+                Start your first day.
+            </div>`;
 
-  if (!logs.length) {
+        return;
+    }
 
     history.innerHTML =
-      `<div class="empty">
-        No logs yet.
-        Start your first day.
-      </div>`;
+        logs.map((log, index) => {
 
-    return;
+            return `
+                <div class="history-row" data-log-index="${index}">
 
-  }
+                    <div>
+
+                        <b>${log.date}</b>
+
+                        · Phase ${log.phase}
+
+                        <div class="muted">
+
+                            ${log.learned || "Learning session"}
+
+                            ${
+                                log.built
+                                    ? " · Built: " + log.built
+                                    : ""
+                            }
+
+                        </div>
+
+                    </div>
+
+                    <b>${log.hours}h</b>
+
+                </div>
+            `;
+
+        }).join("");
 
 
-  history.innerHTML =
-    logs.map(log => {
+    // Make each history row clickable
+    document
+        .querySelectorAll(".history-row")
+        .forEach((row, index) => {
 
-      return `
+            row.addEventListener("click", () => {
 
-        <div class="history-row">
+                const log = logs[index];
 
-          <div>
+                document.getElementById("history-date").textContent =
+                    log.date;
 
-            <b>
-              ${log.date}
-            </b>
+                document.getElementById("history-phase").textContent =
+                    `Phase ${log.phase}`;
 
-            · Phase ${log.phase}
+                document.getElementById("history-learned").textContent =
+                    log.learned || "Not provided";
 
-            <div class="muted">
+                document.getElementById("history-built").textContent =
+                    log.built || "Not provided";
 
-              ${log.learned || "Learning session"}
+                document.getElementById("history-struggles").textContent =
+                    log.struggles || "None";
 
-              ${
-                log.built
-                  ? " · Built: " + log.built
-                  : ""
-              }
+                document.getElementById("history-hours").textContent =
+                    `${log.hours} hours`;
 
-            </div>
+                document.getElementById("history-completed").textContent =
+                    log.completed ? "Yes" : "No";
 
-          </div>
+                document
+                    .getElementById("history-dialog")
+                    .showModal();
 
-          <b>
-            ${log.hours}h
-          </b>
+            });
 
-        </div>
-
-      `;
-
-    }).join("");
-
+        });
 }
-
 
 
 /* DASHBOARD CHART */
